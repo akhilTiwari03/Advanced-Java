@@ -8,6 +8,7 @@ public class Filter_Sort_Map {
         num.stream().filter(e-> e%2 == 0)
                     .sorted()
                     .map(e->e*e)
-                    .forEach(e->System.out.println(e));
+                  //  .forEach(e->System.out.println(e)); below forEach is also same
+                  .forEach(System.out::println);
     }
 }
