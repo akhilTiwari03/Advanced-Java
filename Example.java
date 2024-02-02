@@ -37,7 +37,24 @@ public interface Example {
 
         System.out.println(mm.get());
 
+        // reduce -> combine the objects or values into single object
 
+        List<String> list3 = Arrays.asList("A","B","C", "1", "2", "3");
+        Optional<String> red = list3.stream().reduce((val, comb) -> {
+            return val + comb;
+        });
+
+        System.out.println(red);
+
+        List<Integer> list4 = Arrays.asList(1,2,3,5,6,5,8,6,9,5,1,3);
         
+        Optional<Integer> rr = list4.stream().reduce((val, comb) -> {
+            return val + comb;
+        });
+
+        System.out.println(rr);
+
+
+
     }
 }
