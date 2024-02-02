@@ -14,5 +14,11 @@ public interface Example {
         System.out.println(collect);
 
         list.stream().distinct().forEach(System.out::println);
+
+        long x = list.stream().count();
+        long y = list.stream().distinct().count();
+        System.out.println(x);
+        System.out.println(y);
+        
     }
 }
