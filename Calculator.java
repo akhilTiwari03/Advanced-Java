@@ -1,98 +1,110 @@
-import java.awt.Container;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 class MyCalculator extends JFrame implements ActionListener {
 
   Container c;
-  JLabel label1, label2;
+  JLabel label1, label2, labelresult;
   JTextField txt1, txt2;
   JButton add, sub, mul, div;
 
   MyCalculator() {
-    setTitle("Calculator");
-    setBounds(100, 100, 400, 300);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setTitle("My Calculator");
+    setBounds(100, 100, 900, 800);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     c = getContentPane();
     c.setLayout(null);
-    Font f = new Font("Arial", Font.BOLD, 11);
-
-    // Label Properties
-    label1 = new JLabel("First Number: ");
-    label2 = new JLabel("Second Number: ");
+    Font f = new Font("Arial", Font.BOLD, 34);
+    // set Label
+    label1 = new JLabel("First Number : ");
+    label1.setBounds(50, 50, 150, 50);
+    c.add(label1);
     label1.setFont(f);
+
+    label2 = new JLabel("Second Number : ");
+    label2.setBounds(50, 150, 150, 50);
+    c.add(label2);
     label2.setFont(f);
 
-    label1.setBounds(50, 50, 150, 50);
-    label2.setBounds(50, 100, 150, 50);
+    labelresult = new JLabel("Result : ");
+    labelresult.setBounds(50, 350, 700, 50);
+    c.add(labelresult);
+    labelresult.setFont(f);
+    labelresult.setForeground(Color.RED);
 
-    c.add(label1);
-    c.add(label2);
-
-    // TextField Properties
     txt1 = new JTextField(0);
-    txt2 = new JTextField(0);
-
-    txt1.setBounds(150, 50, 150, 45);
-    txt2.setBounds(150, 100, 150, 45);
+    txt1.setBounds(250, 50, 150, 50);
+    c.add(txt1);
     txt1.setFont(f);
+
+    txt2 = new JTextField(0);
+    txt2.setBounds(250, 150, 150, 50);
+    c.add(txt2);
     txt2.setFont(f);
 
-    c.add(txt1);
-    c.add(txt2);
-
-    // Button Properties
     add = new JButton("+");
-    add.setBounds(50, 200, 50, 25);
+    add.setBounds(50, 250, 100, 50);
+    c.add(add);
     add.setFont(f);
+    add.addActionListener(this);
 
     sub = new JButton("-");
-    sub.setBounds(125, 200, 50, 25);
-    sub.setFont(f);
-
-    mul = new JButton("x");
-    mul.setBounds(200, 200, 50, 25);
-    mul.setFont(f);
-
-    div = new JButton("%");
-    div.setBounds(275, 200, 50, 25);
-    div.setFont(f);
-
-    c.add(add);
+    sub.setBounds(200, 250, 100, 50);
     c.add(sub);
+    sub.setFont(f);
+    sub.addActionListener(this);
+
+    mul = new JButton("*");
+    mul.setBounds(350, 250, 100, 50);
     c.add(mul);
+    mul.setFont(f);
+    mul.addActionListener(this);
+
+    div = new JButton("/");
+    div.setBounds(500, 250, 100, 50);
     c.add(div);
+    div.setFont(f);
+    div.addActionListener(this);
+
     setVisible(true);
   }
-  int res = 0;
+
   @Override
   public void actionPerformed(ActionEvent e) {
-    int x = Integer.parseInt(txt1.getText());
-    int y = Integer.parseInt(txt2.getText());
-    
-
-    if (e.getSource() == add) {
-      res = x + y;
-    } else if (e.getSource() == sub) {
-      res = Math.abs(x - y);
-    } else if (e.getSource() == mul) {
-      res = x * y;
-    } else if (e.getSource() == div) {
-      res = x / y;
+    try {
+      int x = Integer.parseInt(txt1.getText());
+      int y = Integer.parseInt(txt2.getText());
+      int z = 0;
+      if (e.getSource() == add) {
+        z = x + y;
+        labelresult.setText("Result : " + z);
+      }
+      if (e.getSource() == sub) {
+        z = x - y;
+        labelresult.setText("Result : " + z);
+      }
+      if (e.getSource() == mul) {
+        z = x * y;
+        labelresult.setText("Result : " + z);
+      }
+      if (e.getSource() == div) {
+        z = x / y;
+        labelresult.setText("Result : " + z);
+      }
+    } catch (NumberFormatException ee) {
+      labelresult.setText("Result : enter numeric value only..");
+    } catch (ArithmeticException ee) {
+      labelresult.setText("Result : enter non zero value in text 2 only..");
     }
   }
 }
 
 public class Calculator {
-
-  @SuppressWarnings("unused") 
+  
   public static void main(String[] args) {
-    MyCalculator calc = new MyCalculator();
+    new MyCalculator();
   }
 }
