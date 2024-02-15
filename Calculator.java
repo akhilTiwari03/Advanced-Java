@@ -48,7 +48,6 @@ class MyCalculator extends JFrame implements ActionListener {
     c.add(txt2);
 
     // Button Properties
-
     add = new JButton("+");
     add.setBounds(50, 200, 50, 25);
     add.setFont(f);
