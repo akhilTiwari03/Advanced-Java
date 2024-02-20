@@ -31,7 +31,7 @@ class ToggleButton extends JFrame implements ActionListener {
         if (btnToggle.isSelected()) {
             c.setBackground(Color.RED);
         } else {
-            c.setBackground(null); // Reset background to default when button is deselected
+            c.setBackground(null);
         }
     }
 }
