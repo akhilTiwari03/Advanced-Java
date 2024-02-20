@@ -94,7 +94,7 @@ public void actionPerformed(ActionEvent e) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
-        String password = new String(passwordField.getPassword());
+      //  String password = new String(passwordField.getPassword());
         String gender = "";
         if (maleRadioButton.isSelected()) {
             gender = "Male";
